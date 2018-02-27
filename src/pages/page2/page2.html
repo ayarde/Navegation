@@ -1,0 +1,33 @@
+<!--
+  Generated template for the Page2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>page2</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1>Send with event</h1>
+  <ion-list>
+    <ion-item *ngFor="let mutant of mutants" (click)="toPage3(mutant)">
+      {{ mutant.name }}
+    </ion-item>
+  </ion-list>
+
+  <h1>Send with HTML</h1>
+  <ion-list>
+    <ion-item *ngFor="let mutant of mutants" [navPush]="page3"
+              [navParams]="{'mutant':mutant}">
+      {{ mutant.name }}
+    </ion-item>
+  </ion-list>
+
+</ion-content>
