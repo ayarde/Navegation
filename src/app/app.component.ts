@@ -3,12 +3,16 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from '../pages/index.pages';
+import { TabsPage, Settings2Page } from '../pages/index.pages';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
+  public tabs = TabsPage;
+  public settings2Page = Settings2Page;
+
   rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -19,4 +23,9 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+  openPage( page:any){
+    this.rootPage = page;
+  }
+
 }

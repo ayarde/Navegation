@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { ModalPage } from '../index.pages';
 /**
  * Generated class for the SettingsPage page.
  *
@@ -15,11 +15,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private modalCtrl: ModalController) {
   }
 
   activePrincipal() {
     this.navCtrl.parent.select(2);
+  }
+
+  showModal(){
+    let modal = this.modalCtrl.create(ModalPage, {name:"Ruth Ginebra", age:3});
+    modal.present();
+
+    modal.onDidDismiss(parameters =>{
+      if(parameters){
+        console.log("Show data modal");
+        console.log(parameters);
+      } else {
+        console.log("Closed witout parameters");
+      }
+    });
   }
 
 }

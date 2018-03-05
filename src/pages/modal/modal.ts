@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the ModalPage page.
@@ -8,18 +8,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-modal',
   templateUrl: 'modal.html',
 })
 export class ModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  name:string = "";
+  age:number = 0;
+
+  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
+    this.name = this.navParams.get("name");
+    this.age = this.navParams.get("age");
+
+    console.log(this.name, this.age);;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ModalPage');
+  closeWithParameters() {
+    let data = {
+      name: "Pepe Grillo",
+      age: 15,
+      coordinates : {
+        lat: 10,
+        long:-10
+      }
+    };
+    this.viewCtrl.dismiss(data);
+  }
+
+  closeWithoutParameters() {
+    this.viewCtrl.dismiss();
   }
 
 }
