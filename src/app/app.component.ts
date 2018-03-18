@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -10,15 +10,17 @@ import { TabsPage, Settings2Page } from '../pages/index.pages';
 })
 export class MyApp {
 
-  public tabs = TabsPage;
-  public settings2Page = Settings2Page;
+  tabs = TabsPage;
+  settings2 = Settings2Page;
 
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              private menuCtrl: MenuController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // Here you can do any higher level native things you might need.e
       statusBar.styleDefault();
       splashScreen.hide();
     });
@@ -26,6 +28,7 @@ export class MyApp {
 
   openPage( page:any){
     this.rootPage = page;
+    this.menuCtrl.close();
   }
 
 }
